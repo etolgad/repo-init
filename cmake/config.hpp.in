@@ -1,0 +1,11 @@
+/**
+ * Generated automatically by cmake.
+ * Do not make modifications in this file.
+ */
+
+#ifndef _CONFIG_H_
+#define _CONFIG_H_
+
+#define OUTPUT_LOG_PATH "@OUTPUT_LOG_PATH@"
+
+#endif
