@@ -1,8 +1,10 @@
 #include <iostream>
+#include <thread>
 
 #include <boost/program_options.hpp>
 
 #include "config.hpp"
+#include "handlers/logger.hpp"
 #include "information.hpp"
 
 namespace po = boost::program_options;

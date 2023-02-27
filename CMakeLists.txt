@@ -26,11 +26,14 @@ INCLUDE(CompilerOptions)
 INCLUDE(CompilerFlags)
 INCLUDE(ParseConfigs)
 
+FIND_PACKAGE(Sanitizers)
+
 CONFIGURE_FILE(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/information.hpp.in 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/information.hpp)
 
 ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty)
+ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/src/handlers)
 
 ADD_EXECUTABLE(${PROJECT_NAME} 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
@@ -41,7 +44,10 @@ TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/boost/libs/program_options/include/boost)
 
 TARGET_LINK_LIBRARIES(${PROJECT_NAME}
-    boost_program_options)
+    boost_program_options
+    handlers_logger)
+
+add_sanitizers(${PROJECT_NAME})
 
 INSTALL(TARGETS 
     ${PROJECT_NAME}
