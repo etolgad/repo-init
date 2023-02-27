@@ -39,3 +39,6 @@ build
 data
 include/config.hpp
 include/information.hpp
+
+# Compressed files
+*tar*
