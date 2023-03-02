@@ -26,8 +26,6 @@ INCLUDE(CompilerOptions)
 INCLUDE(CompilerFlags)
 INCLUDE(ParseConfigs)
 
-FIND_PACKAGE(Sanitizers)
-
 CONFIGURE_FILE(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/information.hpp.in 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/information.hpp)
@@ -46,8 +44,6 @@ TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME}
 TARGET_LINK_LIBRARIES(${PROJECT_NAME}
     boost_program_options
     handlers_logger)
-
-add_sanitizers(${PROJECT_NAME})
 
 INSTALL(TARGETS 
     ${PROJECT_NAME}
