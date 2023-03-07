@@ -23,14 +23,6 @@ include(ParseConfigs)
 
 find_package(Boost 1.81.0 EXACT REQUIRED COMPONENTS program_options)
 
-find_package(CURL 7.88.1 EXACT)
-
-find_package(RapidJSON)
-
-find_package(ZeroMQ)
-
-find_package(spdlog)
-
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/information.hpp.in 
     ${CMAKE_CURRENT_SOURCE_DIR}/include/information.hpp)
