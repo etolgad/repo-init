@@ -46,19 +46,19 @@ done
 #===============================================================================
 # Copy binary file with its parent directories to the target directory
 #===============================================================================
-cp --verbose --parents "${ARGUMENT_BINARY}" "${ARGUMENT_TARGET}"
+# cp --verbose --parents "${ARGUMENT_BINARY}" "${ARGUMENT_TARGET}"
 
 #===============================================================================
 # Copy each library with its parent directories to the target directory
 #===============================================================================
 for library in $(ldd "${ARGUMENT_BINARY}" | cut -d '>' -f 2 | awk '{print $1}')
 do
-    
-	if echo "${library}" | grep -Ev "${ARGUMENT_REGEX}";
+	if echo "${library}" | grep "/usr/local/*";
 	then
-		[ -f "${library}" ] && cp --parents "${library}" "${ARGUMENT_TARGET}"
+		[ -f "${library}" ] && cp --verbose --parents "${library}" "${ARGUMENT_TARGET}"
 	fi
 done
 
 find "${ARGUMENT_TARGET}" -type f -exec mv -t "${ARGUMENT_TARGET}" {} +
 find "${ARGUMENT_TARGET}" -type d -empty -delete
+find "${ARGUMENT_TARGET}" -type f -name "*~*"
