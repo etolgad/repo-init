@@ -29,9 +29,7 @@ find_package(RapidJSON)
 
 find_package(ZeroMQ)
 
-if(NOT TARGET spdlog)
-    find_package(spdlog REQUIRED)
-endif()
+find_package(spdlog)
 
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/information.hpp.in 
@@ -45,7 +43,4 @@ target_include_directories(${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 target_link_libraries(${PROJECT_NAME}
-                        ${Boost_LIBRARIES}
-                        spdlog::spdlog
-                        CURL::libcurl
-                        ${ZeroMQ_LIBRARY})
+                        ${Boost_LIBRARIES})
