@@ -1,7 +1,9 @@
 #include <iostream>
-#include <thread>
 
 #include <boost/program_options.hpp>
+
+#include <curl/curl.h>
+#include <spdlog/spdlog.h>
 
 #include "config.hpp"
 #include "information.hpp"
@@ -73,6 +75,7 @@ int main(int argc, char **argv)
     /********************************************
      * Main program starts here
      ********************************************/
-
+    CURL *curl;
+    spdlog::info("TEST");
     return EXIT_SUCCESS;
 }

@@ -1,22 +1,20 @@
-IF(EXISTS ${CMAKE_SOURCE_DIR}/config.json)
-    MESSAGE("${BoldBlue}config.json found!${ColourReset}")
-ELSE()
-    MESSAGE(FATAL_ERROR "${BoldRed}config.json not found!${ColourReset}")
-ENDIF()
+if(NOT EXISTS ${CMAKE_SOURCE_DIR}/config.json)
+    message(FATAL_ERROR "config.json not found!")
+endif()
 
-FILE(READ ${CMAKE_SOURCE_DIR}/config.json APP_CONFIG_FILE)
+file(READ ${CMAKE_SOURCE_DIR}/config.json APP_CONFIG_FILE)
 
-STRING(JSON CONFIGS_LENGTH LENGTH ${APP_CONFIG_FILE})
+string(JSON CONFIGS_LENGTH LENGTH ${APP_CONFIG_FILE})
 
-MATH(EXPR CONFIGS_LENGTH "${CONFIGS_LENGTH} - 1" OUTPUT_FORMAT DECIMAL)
+math(EXPR CONFIGS_LENGTH "${CONFIGS_LENGTH} - 1" OUTPUT_FORMAT DECIMAL)
 
-FOREACH(IDX RANGE ${CONFIGS_LENGTH})
-    STRING(JSON CONFIG MEMBER ${APP_CONFIG_FILE} ${IDX})
-    STRING(JSON VALUE GET ${APP_CONFIG_FILE} ${CONFIG})
-    SET(${CONFIG} ${VALUE})
-ENDFOREACH()
+foreach(IDX RANGE ${CONFIGS_LENGTH})
+    string(JSON CONFIG MEMBER ${APP_CONFIG_FILE} ${IDX})
+    string(JSON VALUE GET ${APP_CONFIG_FILE} ${CONFIG})
+    set(${CONFIG} ${VALUE})
+endforeach()
 
-CONFIGURE_FILE(
+configure_file(
     ${CMAKE_SOURCE_DIR}/cmake/config.hpp.in
     ${CMAKE_SOURCE_DIR}/include/config.hpp
 )
