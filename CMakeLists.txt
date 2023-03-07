@@ -23,7 +23,11 @@ include(ParseConfigs)
 
 find_package(Boost 1.81.0 EXACT REQUIRED COMPONENTS program_options)
 
-find_package(CURL 7.88.1 EXACT REQUIRED)
+find_package(CURL 7.88.1 EXACT)
+
+find_package(RapidJSON)
+
+find_package(ZeroMQ)
 
 if(NOT TARGET spdlog)
     find_package(spdlog REQUIRED)
@@ -38,11 +42,10 @@ add_executable(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-        ${Boost_INCLUDE_DIRS}
-        ${CURL_INCLUDE_DIRS}
         ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 target_link_libraries(${PROJECT_NAME}
                         ${Boost_LIBRARIES}
-                        ${CURL_LIBRARIES}
-                        spdlog::spdlog)
+                        spdlog::spdlog
+                        CURL::libcurl
+                        ${ZeroMQ_LIBRARY})
