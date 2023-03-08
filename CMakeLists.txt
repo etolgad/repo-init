@@ -22,6 +22,9 @@ include(CompilerFlags)
 include(ParseConfigs)
 
 find_package(Boost 1.81.0 EXACT REQUIRED COMPONENTS program_options)
+find_package(spdlog REQUIRED)
+find_package(ZeroMQ REQUIRED)
+find_package(RapidJSON REQUIRED)
 
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/information.hpp.in 
@@ -35,4 +38,6 @@ target_include_directories(${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 target_link_libraries(${PROJECT_NAME}
-                        ${Boost_LIBRARIES})
+                        Boost::program_options
+                        spdlog::spdlog
+                        libzmq)

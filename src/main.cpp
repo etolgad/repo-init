@@ -2,6 +2,8 @@
 
 #include <boost/program_options.hpp>
 
+#include <spdlog/spdlog.h>
+
 #include "config.hpp"
 #include "information.hpp"
 
